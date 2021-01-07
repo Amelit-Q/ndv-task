@@ -12,14 +12,24 @@ const instance = axios.create({
 //   });
 // };
 
-export const getAllCurrencyPairs = () => {
-  return async (dispatch) => {
-    instance.get("/latest").then((response) => {
-      // console.log(response);
-      // console.log(response.data.rates);
-      dispatch(setCurrencyList(response.data));
-    });
-  };
+// export const getAllCurrencyPairs = () => {
+//   return async (dispatch) => {
+//     await instance.get("/latest").then((response) => {
+//       // console.log(response.status)
+//       // console.log(response);
+//       console.log(response.data.rates);
+//       dispatch(setCurrencyList(response.data));
+//     });
+//   };
+// };
+
+export const getAllCurrencyPairs = () => (dispatch) => {
+  instance.get("/latest").then((response) => {
+    // console.log(response.status)
+    // console.log(response);
+    console.log(response.data.rates);
+    dispatch(setCurrencyList(response.data));
+  });
 };
 
 // export const
