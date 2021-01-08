@@ -6,9 +6,9 @@ import { CurrencyRow } from "../components/CurrencyRow";
 
 export const Main = () => {
   // const key = process.env.REACT_APP_API_KEY;
-  const instance = axios.create({
-    baseURL: "https://api.exchangeratesapi.io",
-  });
+  // const instance = axios.create({
+  //   baseURL: "https://api.exchangeratesapi.io",
+  // });
 
   const BASE_URL = "https://api.exchangeratesapi.io/latest";
 
@@ -99,7 +99,7 @@ export const Main = () => {
   };
 
   return (
-    <div>
+    <div className="Currency-rows">
       <CurrencyRow
         currencyOptions={currencyOptions}
         selectedCurrency={fromCurrency}

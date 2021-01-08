@@ -9,7 +9,7 @@ export const CurrencyRow = ({
 }) => {
   // console.log(currencyOptions, "props in Currency row");
   return (
-    <>
+    <div>
       <input type="number" className="input" value={amount} onChange={onChangeAmount} />
       <select value={selectedCurrency} onChange={onChangeCurrency}>
         {currencyOptions.map((value) => (
@@ -18,6 +18,6 @@ export const CurrencyRow = ({
           </option>
         ))}
       </select>
-    </>
+    </div>
   );
 };
