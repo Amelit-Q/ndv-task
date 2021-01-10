@@ -4,19 +4,22 @@ import React from "react";
 export const CurrencyRates = () => {
   const [getAllCurrencyRatesValues, setAllCurrencyRateValues] = React.useState([]);
   const [getAllCurrencyRatesKeys, setAllCurrencyRateKeys] = React.useState([]);
-  console.log(getAllCurrencyRatesValues);
-  console.log(getAllCurrencyRatesKeys);
+  const [displayBaseCurrency, setDisplayBaseCurrency] = React.useState();
+  const [toCurrency, setToCurrency] = React.useState();
+  const baseCurrency = "";
+
   React.useEffect(() => {
-    axios.get("https://api.exchangeratesapi.io/latest").then(({ data }) => {
-      //   console.log(data.rates);
-      //   setAllCurrencyRates(Object.values(data.rates));
-      setAllCurrencyRateValues([...Object.values(data.rates)]);
-      setAllCurrencyRateKeys([...Object.keys(data.rates)]);
-      //   setAllCurrencyRates(Object.values(data.rates), ...Object.values(data.keys));
-      const currencyList = data.rates;
-      // console.log(currencyList);
-    });
-  }, []);
+    axios
+      .get(`https://api.exchangeratesapi.io/latest?base=${toCurrency ? toCurrency : "RUB"}`)
+      .then(({ data }) => {
+        setAllCurrencyRateValues([...Object.values(data.rates)]);
+        setAllCurrencyRateKeys([...Object.keys(data.rates)]);
+        const currencyList = data.rates;
+        setDisplayBaseCurrency(data.base);
+        console.log(data);
+      });
+  }, [toCurrency]);
+
   return (
     <div className="Currency-rates-page">
       <div>
@@ -34,6 +37,15 @@ export const CurrencyRates = () => {
             <li key={value}>{value}</li>
           ))}
         </ul>
+      </div>
+      <div>
+        <select value={toCurrency} onChange={(e) => setToCurrency(e.target.value)}>
+          {getAllCurrencyRatesKeys.map((value) => (
+            <option key={value} value={value}>
+              {value}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );
