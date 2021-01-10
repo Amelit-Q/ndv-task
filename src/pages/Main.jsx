@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
 import { getAllCurrencyPairs } from "../components/api/api";
 import { CurrencyRow } from "../components/CurrencyRow";
 
@@ -79,6 +80,7 @@ export const Main = () => {
         amount={toAmount}
         onChangeAmount={handleToChangeAmount}
       />
+      <Link to="/currencyRates">Currency Rates Page</Link>
     </div>
   );
 };
